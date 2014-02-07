@@ -22,7 +22,8 @@ desc_files = (('README.rst',), ('docs', 'CHANGES.rst'),
 
 long_description = '\n\n'.join([read_file(*pathes) for pathes in desc_files])
 
-install_requires = ['setuptools', 'six>=1.2.0', 'mr.bobby', 'bobbyplugins.jpcw', 'IPy']
+install_requires = ['setuptools', 'six>=1.2.0', 'mr.bobby',
+                    'bobbyplugins.jpcw', 'IPy']
 
 
 setup(name='bobbytemplates.openbsd',
@@ -33,14 +34,15 @@ setup(name='bobbytemplates.openbsd',
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=["Programming Language :: Python",
-      "Programming Language :: Python :: Implementation :: CPython",
-      "Programming Language :: Python :: Implementation :: PyPy",
-      "Programming Language :: Python :: 2.6",
-      "Programming Language :: Python :: 2.7",
-      "Programming Language :: Python :: 3",
-      "Programming Language :: Python :: 3.2",
-      "Programming Language :: Python :: 3.3",
-      "License :: OSI Approved :: BSD License"],
+                   "Programming Language :: Python :: Implementation"
+                   " :: CPython",
+                   "Programming Language :: Python :: Implementation :: PyPy",
+                   "Programming Language :: Python :: 2.6",
+                   "Programming Language :: Python :: 2.7",
+                   "Programming Language :: Python :: 3",
+                   "Programming Language :: Python :: 3.2",
+                   "Programming Language :: Python :: 3.3",
+                   "License :: OSI Approved :: BSD License"],
       keywords='templates mrbobby openbsd',
       author='Jean-Philippe Camguilhem',
       author_email='jpcw@camguilhem.net',

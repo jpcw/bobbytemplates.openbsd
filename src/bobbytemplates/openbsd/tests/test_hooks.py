@@ -45,7 +45,8 @@ class Post_ask_q_carp_iface_cidrTest(TestCase):
 
     def call_FUT(self, answer, configurator=None, question=None):
         from ..hooks import post_ask_q_carp_iface_cidr
-        return post_ask_q_carp_iface_cidr(DummyConfigurator(), question, answer)
+        return post_ask_q_carp_iface_cidr(DummyConfigurator(), question,
+                                          answer)
 
     def test_post_ask_q_carp_iface_cidr(self):
         from mrbobby.bobbyexceptions import ValidationError
@@ -60,7 +61,8 @@ class Post_ask_q_carp_iface_advskewTest(TestCase):
 
     def call_FUT(self, answer, configurator=None, question=None):
         from ..hooks import post_ask_q_carp_iface_advskew
-        return post_ask_q_carp_iface_advskew(DummyConfigurator(), question, answer)
+        return post_ask_q_carp_iface_advskew(DummyConfigurator(), question,
+                                             answer)
 
     def test_post_ask_q_carp_iface_advskew(self):
         from mrbobby.bobbyexceptions import ValidationError
@@ -74,7 +76,8 @@ class Post_ask_q_carp_iface_vlanTest(TestCase):
 
     def call_FUT(self, answer, configurator=None, question=None):
         from ..hooks import post_ask_q_carp_iface_vlan
-        return post_ask_q_carp_iface_vlan(DummyConfigurator(), question, answer)
+        return post_ask_q_carp_iface_vlan(DummyConfigurator(), question,
+                                          answer)
 
     def test_post_ask_q_carp_iface_vlan(self):
         from mrbobby.bobbyexceptions import ValidationError
@@ -87,7 +90,8 @@ class Post_ask_q_carp_iface_descriptionTest(TestCase):
 
     def call_FUT(self, answer, configurator=None, question=None):
         from ..hooks import post_ask_q_carp_iface_description
-        return post_ask_q_carp_iface_description(DummyConfigurator(), question, answer)
+        return post_ask_q_carp_iface_description(DummyConfigurator(), question,
+                                                 answer)
 
     def test_post_ask_q_carp_iface_description(self):
         from string import ascii_letters
@@ -105,7 +109,8 @@ class Post_ask_q_carp_iface_vhidTest(TestCase):
     def call_FUT(self, answer, configurator=None, question=None):
         from mrbobby.configurator import Configurator
         from ..hooks import post_ask_q_carp_iface_vhid
-        return post_ask_q_carp_iface_vhid(Configurator(self.fs_templates, '', {}), question, answer)
+        return post_ask_q_carp_iface_vhid(Configurator(self.fs_templates, '',
+                                                       {}), question, answer)
 
     def test_post_ask_q_carp_iface_vhid(self):
         from mrbobby.bobbyexceptions import ValidationError

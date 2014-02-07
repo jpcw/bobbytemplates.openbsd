@@ -18,7 +18,9 @@ def within_intervall(str_value, name, lower_bound=1, upper_bound=255):
     if answer.isdigit():
         value = int(answer)
         if value not in range(lower_bound, upper_bound + 1):
-            raise ValidationError("{0} Acceptable values for {1} are from {2} to {3}".format(answer, name, lower_bound, upper_bound))
+            msg = "{0} Acceptable values for {1} are from {2} to {3}"
+            raise ValidationError(msg.format(answer, name, lower_bound,
+                                  upper_bound))
 
     else:
         raise ValidationError("{0} is not a valid number".format(answer))
@@ -43,13 +45,16 @@ def post_ask_q_carp_iface_cidr(configurator, question, answer):
 
     try:
         if answer.count('/') != 1:
-            raise ValidationError("'{0}' Plz input a cidr subnet notation here".format(answer))
+            msg = "'{0}' Plz input a cidr subnet notation here"
+            raise ValidationError(msg.format(answer))
         ip, netmask = answer.split('/')
         subnet = IP(answer, make_net=True)
         if netmask not in ['32', '128']:
             # we accept network ip only with /32 or /128
             if is_a_network_address(answer):
-                raise ValidationError("'{0}': oO you provided a network address, within not in [/32 or /128] !".format(answer))
+                msg = "'{0}': oO you provided a network address,"\
+                      " within not in [/32 or /128] !"
+                raise ValidationError(msg.format(answer))
         net_vars['subnet'] = '%s/%s' % (str(subnet.net()), netmask)
         net_vars['netmask'] = str(subnet.netmask())
         net_vars['broadcast'] = str(subnet.broadcast())
@@ -57,7 +62,9 @@ def post_ask_q_carp_iface_cidr(configurator, question, answer):
         if netmask not in ['32', '128', '31', '127']:
             # we accept broadcast ip only with /32, /128, /31, /127
             if net_vars['ip'] == net_vars['broadcast']:
-                raise ValidationError("'{0}': oO you provided a broadcast ip within not in [/32, /128, /31, /127]".format(answer))
+                msg = "'{0}': oO you provided a broadcast ip within"\
+                      " not in [/32, /128, /31, /127]"
+                raise ValidationError(msg.format(answer))
 
     except ValidationError as e:
         raise(e)
@@ -95,12 +102,14 @@ def post_ask_q_carp_iface_vlan(configurator, question, answer):
             vlanid = within_intervall(answer, 'vlan', 1, 4094)
             if vlanid:
                 configurator.variables['carpdev'] = 'vlan%s' % vlanid
-                configurator.variables['vlandev'] = configurator.variables['physdev']
+                vlandev = configurator.variables['physdev']
+                configurator.variables['vlandev'] = vlandev
                 configurator.variables['rdr_vlan'] = True
                 return vlanid
 
         else:
-            configurator.variables['carpdev'] = configurator.variables['physdev']
+            carpdev = configurator.variables['physdev']
+            configurator.variables['carpdev'] = carpdev
             configurator.variables['rdr_vlan'] = False
             return False
 

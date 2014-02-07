@@ -30,3 +30,4 @@ bobbytemplates.openbsd is continuously
 
 .. |coveralls| image:: https://coveralls.io/repos/jpcw/bobbytemplates.openbsd/badge.png
 .. _coveralls: https://coveralls.io/r/jpcw/bobbytemplates.openbsd
+
