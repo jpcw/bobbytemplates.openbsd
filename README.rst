@@ -36,11 +36,35 @@ Templates for OpenBSD stuff
     
     --> carp_group hostname: ha
     
+which generate ::
+
+    ├── charybde
+    │   └── etc
+    │       ├── hostname.carp42
+    │       └── hostname.vlan42
+    └── scylla
+        └── etc
+            ├── hostname.carp42
+            └── hostname.vlan42
+
+::
+ 
+    $ cat charybde/etc/hostname.carp42
+    inet 192.168.1.1 255.255.255.0 192.168.1.255 vhid 42 carpdev vlan42 pass secret group ha description "Router Interface"
+    # subnet : 192.168.1.0/24
+    $ cat charybde/etc/hostname.vlan42
+    vlandev em0
+    $ cat scylla/etc/hostname.carp42
+    inet 192.168.1.1 255.255.255.0 192.168.1.255 vhid 42 carpdev vlan42 advskew 100 pass secret group ha description "Router Interface"
+    # subnet : 192.168.1.0/24
+    $ cat scylla/etc/hostname.vlan42
+    vlandev em0
 
 Documentation
 =============
 
 http://bobbytemplatesopenbsd.readthedocs.org/
+
 
 Tests
 =====
